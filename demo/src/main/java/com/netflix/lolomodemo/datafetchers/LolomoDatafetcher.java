@@ -23,6 +23,7 @@ public class LolomoDatafetcher {
     public List<ShowCategory> lolomo() {
         /**
          * a method that when a user requests lolomo, this method gets executed
+         * @return: Show Categories
          */
         log.info("GET request : getting all Show categories");
         return List.of(
