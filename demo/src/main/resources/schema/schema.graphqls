@@ -1,0 +1,17 @@
+# Type query lolomo query implementation
+type Query {
+    lolomo: [ShowCategory]
+}
+
+# Defining a type showCategory
+type ShowCategory {
+    id: Int
+    name: String
+    shows: [Show]
+}
+
+# Defining the show type
+type Show {
+    title: String
+    artworkUrl: String
+}
