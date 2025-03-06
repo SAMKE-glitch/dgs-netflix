@@ -9,7 +9,6 @@ import com.netflix.lolomodemo.codegen.types.ShowCategory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 
 @Slf4j
@@ -51,6 +50,6 @@ public class LolomoDatafetcher {
 
     @DgsQuery
     public List<Show> search(@InputArgument SearchFilter searchFilter) {
-        return showsRepository.allShows().stream().filter(s -> s.getTitle().startsWith(searchFilter.getTitle())).toList();
+        return showsRepository.allShows().stream().filter(s -> s.getTitle().toLowerCase().startsWith(searchFilter.getTitle())).toList();
     }
 }
