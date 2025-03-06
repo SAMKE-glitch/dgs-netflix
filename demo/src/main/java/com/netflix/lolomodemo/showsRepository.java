@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class showsRepository {
+public class ShowsRepository {
 
     /**
      * class for shows
@@ -20,6 +20,7 @@ public class showsRepository {
             Show.newBuilder().title("Manifest").build(),
             Show.newBuilder().title("Love is Blind").build(),
             Show.newBuilder().title("You").build(),
+            Show.newBuilder().title("Receiver").build(),
             Show.newBuilder().title("The Last Dance").build()
     );
 
