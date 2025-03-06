@@ -1,6 +1,12 @@
 # Type query lolomo query implementation
 type Query {
     lolomo: [ShowCategory]
+    search(searchFilter: SearchFilter): [Show]
+}
+
+# Defining the searchFilter input for normal type from user
+input SearchFilter {
+    title: String
 }
 
 # Defining a type showCategory
