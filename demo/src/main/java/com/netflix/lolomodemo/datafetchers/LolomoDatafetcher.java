@@ -1,8 +1,12 @@
 package com.netflix.lolomodemo.datafetchers;
 
 import com.netflix.graphql.dgs.DgsComponent;
+import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.netflix.graphql.dgs.DgsQuery;
+import com.netflix.lolomodemo.ArtworkService;
 import com.netflix.lolomodemo.ShowsRepository;
+import com.netflix.lolomodemo.codegen.types.Show;
 import com.netflix.lolomodemo.codegen.types.ShowCategory;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +20,11 @@ import java.util.List;
 @DgsComponent
 public class LolomoDatafetcher {
     private final ShowsRepository showsRepository;
+    private final ArtworkService artworkService;
 
-    public LolomoDatafetcher(ShowsRepository showsRepository) {
+    public LolomoDatafetcher(ShowsRepository showsRepository, ArtworkService artworkService) {
         this.showsRepository = showsRepository;
+        this.artworkService = artworkService;
     }
 
     /**
@@ -37,5 +43,11 @@ public class LolomoDatafetcher {
                 ShowCategory.newBuilder().id(2).name("Continue Watching").shows(showsRepository.showsForCategory(2)).build()
         );
 
+    }
+
+    @DgsData(parentType = "Show")
+    public String artworkUrl(DgsDataFetchingEnvironment dge) {
+        Show show = dge.getSourceOrThrow();
+        return artworkService.generateForTitle(show.getTitle());
     }
 }
